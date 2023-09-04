@@ -13,7 +13,11 @@ $(TARGET): $(OBJECTS)
 	$(RANLIB) $@
 
 $(OBJECTS): %.o: %.c
-	$(CC) -c -I. -I./include $(CFLAGS) $< -o $@
+	$(CC) -fPIC -c -I. -I./include $(CFLAGS) $< -o $@
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
+
+
+bing:
+	$(CC) *.o -fPIC -L/home/billy/projects/buildroot/build/libpng -L/home/billy/projects/buildroot/build/libtiff -L/home/billy/projects/buildroot/build/libz -lpng -ltiff -lz -shared -o libjabcode.so
